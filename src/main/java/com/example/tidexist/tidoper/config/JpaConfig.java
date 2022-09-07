@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.netsurfingzone.repository")
+@EnableJpaRepositories(basePackages = "com.example.tidexist.tidoper.repository")
 @EnableCaching
 public class JpaConfig {
 

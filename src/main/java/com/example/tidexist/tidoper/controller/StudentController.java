@@ -22,25 +22,24 @@ public class StudentController {
 
     @PostMapping("/create")
     public Student createStudent(@RequestBody Student student) {
-        Student createResponse = studentService.save(student);
-        return createResponse;
+        //Student createResponse = studentService.save(student);
+        //return createResponse;
+        return studentService.save(student);
     }
 
     @PutMapping("/update")
     public Student updateStudent(@RequestBody Student student) {
-        Student updateResponse = studentService.update(student);
-        return updateResponse;
+        return studentService.update(student);
     }
 
     @GetMapping("/{id}")
     public Student getStudent(@PathVariable int id) {
-        Student getReponse = studentService.get(id);
-        return getReponse;
+        return studentService.get(id);
     }
 
     @DeleteMapping("/delete")
     public String deleteStudent(@RequestBody Student student) {
         studentService.delete(student);
-        return "Record deleted succesfully";
+        return "Record deleted successfully";
     }
 }

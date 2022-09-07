@@ -9,36 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("bookServiceImpl")
 public class StudentServiceImpl implements StudentService {
 
-//    @Autowired
-    private StudentRepository studentRepository;
-/*
-    private final StudentRepository studentRepository;
+    //@Autowired
+    //private StudentRepository studentRepository;
 
+    private StudentRepository studentRepository;
+    @Autowired
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
- */
-
-
     @Transactional
     @CachePut(value = "student", key = "#student.id")
     public Student save(Student student) {
-        Student createResponse = studentRepository.save(student);
-        return createResponse;
+        //Student createResponse = studentRepository.save(student);
+        //return createResponse;
+        return studentRepository.save(student);
     }
 
     @Transactional
     @Cacheable(value = "student", key = "#id")
     public Student get(int id) {
-        Student student = null;
+        Student student;
         Optional<Student> studentResponse = studentRepository.findById(id);
         if (studentResponse.isPresent()) {
             student = studentResponse.get();
@@ -51,8 +48,7 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     @CachePut(value = "student", key = "#student.id")
     public Student update(Student student) {
-        Student updateResponse = studentRepository.save(student);
-        return updateResponse;
+        return studentRepository.save(student);
     }
 
     @Transactional
